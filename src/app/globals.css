@@ -1,26 +1,250 @@
+
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --paper: #fff5e7;
+  --ink: #2b1720;
+  --muted: #795e62;
+  --tomato: #ff674d;
+  --cherry: #e83e57;
+  --butter: #ffd45d;
+  --lilac: #d9c5ff;
+  --mint: #bce9d4;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  background: var(--paper);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  margin: 0;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
   font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--butter);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 3px solid #6740d8;
+  outline-offset: 4px;
+}
+
+.party-display {
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.075em;
+  line-height: 0.92;
+}
+
+.party-paper {
+  background-color: var(--paper);
+  background-image: radial-gradient(#e9cbb9 0.75px, transparent 0.75px);
+  background-size: 17px 17px;
+}
+
+.party-shadow {
+  box-shadow: 5px 6px 0 var(--ink);
+}
+
+.party-shadow-small {
+  box-shadow: 3px 4px 0 var(--ink);
+}
+
+.party-sticker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 9px 15px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.party-float {
+  animation: party-float 4s ease-in-out infinite;
+}
+
+.party-wiggle {
+  animation: party-wiggle 3.5s ease-in-out infinite;
+  transform-origin: 50% 85%;
+}
+
+.party-pop {
+  animation: party-pop 500ms cubic-bezier(.2, 1.7, .5, 1) both;
+}
+
+.party-enter {
+  animation: party-enter 650ms cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.party-confetti {
+  animation: party-confetti 1.5s ease-out forwards;
+}
+
+.party-tape {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 75px;
+  height: 22px;
+  transform: translateX(-50%) rotate(-4deg);
+  background: #ffd45d;
+  opacity: 0.95;
+}
+
+.party-button {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--ink);
+  color: white;
+  padding: 15px 23px;
+  font-weight: 800;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.party-button:hover {
+  transform: translateY(-3px) rotate(-1deg);
+  box-shadow: 0 5px 0 rgb(43 23 32 / 20%);
+}
+
+.party-button:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: none;
+}
+
+.party-button-light {
+  background: white;
+  color: var(--ink);
+}
+
+.party-card {
+  border: 2px solid var(--ink);
+  border-radius: 24px;
+  background: white;
+  box-shadow: 4px 5px 0 var(--ink);
+}
+
+.party-input {
+  width: 100%;
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  background: #fffdf9;
+  padding: 14px 16px;
+  color: var(--ink);
+  outline-offset: 3px;
+}
+
+.party-input::placeholder {
+  color: #a28c8a;
+}
+
+.party-input:focus {
+  outline: 3px solid var(--lilac);
+}
+
+@keyframes party-float {
+  0%, 100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(3deg);
+  }
+}
+
+@keyframes party-wiggle {
+  0%, 100% {
+    transform: rotate(-3deg);
+  }
+  25% {
+    transform: rotate(3deg);
+  }
+  50% {
+    transform: rotate(-2deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes party-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.65) rotate(-7deg);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1.06) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes party-enter {
+  from {
+    opacity: 0;
+    transform: translateY(24px) rotate(1deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+  }
+}
+
+@keyframes party-confetti {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(180px) rotate(450deg) scale(0.5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
